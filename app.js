@@ -37,9 +37,7 @@ const consultarProductos = async () => {
     return productos 
 }
 
-/* const stockProductos = consultarProductos()
-console.log (stockProductos) */
-
+let a = []
 
 consultarProductos().then(stockProductos => {
     stockProductos.forEach((producto) => {
@@ -55,7 +53,7 @@ consultarProductos().then(stockProductos => {
 
         `
         contenedorProductos.appendChild(div)
-
+        a.push(producto)
         
         const boton = document.getElementById(`agregar${producto.id}`)
 
@@ -68,6 +66,7 @@ consultarProductos().then(stockProductos => {
     })
 })
 
+console.log(a)
 const agregarAlCarrito = (prodId) => {
 
     const existe = carrito.some (prod => prod.id === prodId) 
@@ -80,13 +79,15 @@ const agregarAlCarrito = (prodId) => {
             }
         })
     } else { 
-        const item = stockProductos.find((prod) => prod.id === prodId)
+        const item = a.find((prod) => prod.id === prodId)
 
         carrito.push(item)
     }
-    
+
     actualizarCarrito()
-}
+} 
+
+
 
 const eliminarDelCarrito = (prodId) => {
     const item = carrito.find((prod) => prod.id === prodId)

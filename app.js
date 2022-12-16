@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 botonVaciar.addEventListener('click', () => {
-    carrito.length = 0
+    carrito = []
     actualizarCarrito()
+    localStorage.clear()
 })
 
 
@@ -104,7 +105,7 @@ const eliminarDelCarrito = (prodId) => {
 const actualizarCarrito = () => {
     
     contenedorCarrito.innerHTML = "" 
-   
+    localStorage.setItem('carrito', JSON.stringify(carrito))
     carrito.forEach((prod) => {
         const div = document.createElement('div')
         div.className = ('productoEnCarrito')
@@ -116,7 +117,7 @@ const actualizarCarrito = () => {
         `
         contenedorCarrito.appendChild(div)
         
-        localStorage.setItem('carrito', JSON.stringify(carrito))
+        
 
     })
    

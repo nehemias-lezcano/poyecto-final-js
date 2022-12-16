@@ -13,6 +13,7 @@ const contadorCarrito = document.getElementById('contadorCarrito')
 const cantidad = document.getElementById('cantidad')
 const precioTotal = document.getElementById('precioTotal')
 const cantidadTotal = document.getElementById('cantidadTotal')
+const procesarCompra = document.querySelector('#procesarCompra')//
 
 let carrito = []
 
@@ -29,8 +30,27 @@ botonVaciar.addEventListener('click', () => {
     localStorage.clear()
 })
 
-
-
+//
+if (procesarCompra) {
+    procesarCompra.addEventListener("click", () => {
+      if (carrito.length === 0) {
+        Swal.fire({
+          title: "¡Tu carrito está vacio!",
+          text: "Compra algo para continuar con la compra",        //alerta rechazo
+          icon: "error",
+          confirmButtonText: "Aceptar",
+        });
+      } else {
+        Swal.fire({
+            title: "¡Tu compra se a realiado con exito!",
+            text: "muchas gracias por confiar en nosotros",        //alerta de compra
+            icon: "success",
+            confirmButtonText: "Aceptar",
+          });
+      }
+    });
+  }
+//
 //
 const consultarProductos = async () => {
     const response = await fetch('./json/stock.json')
